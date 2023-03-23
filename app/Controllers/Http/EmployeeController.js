@@ -50,6 +50,15 @@ class EmployeeController {
 	return response.route('employee.index')
   }
 
+  async delete({ request, response, view, params, session}) {
+	const id = params.id
+	const employee = await Employee.find(id)
+	await employee.delete()
+  
+	session.flash({ notification: 'Delete Successful!' })
+	return response.route('employee.index')
+  }
+
 }
 
 module.exports = EmployeeController
