@@ -37,7 +37,7 @@
               <td> {{ employee.role }} </td>
               <td class="text-center">
                 <a href="{{ route('employee.edit', { id : employee.id }) }}" class="btn btn-sm btn-primary">Update</a>
-				<a href="{{ route('employee.view', { id : employee.id }) }}" class="btn btn-sm btn-danger">View</a>
+				<a href="{{ route('employee.detail', { id : employee.id }) }}" class="btn btn-sm btn-primary">View</a>
                 <a href="{{ route('employee.delete', { id : employee.id }) }}" class="btn btn-sm btn-danger">Delete</a>
               </td>
             </tr>

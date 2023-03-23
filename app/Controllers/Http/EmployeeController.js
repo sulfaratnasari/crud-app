@@ -59,6 +59,13 @@ class EmployeeController {
 	return response.route('employee.index')
   }
 
+  async detail({ request, response, params, view }) {
+    const id = params.id
+	const employee = await Employee.find(id)
+
+    return view.render('employee.detail', { employee: employee })
+  }
+
 }
 
 module.exports = EmployeeController
