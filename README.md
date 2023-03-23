@@ -1,31 +1,21 @@
-# Adonis fullstack application
+# EMPLOYEE CRUD APP
 
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
-
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
+This app is to manage employees data.
 
 ## Setup
 
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick
-```
-
-or manually clone the repo and then run `npm install`.
+npm install
 
 
 ### Migrations
 
 Run the following command to run startup migrations.
 
-```js
 adonis migration:run
-```
+adonis seed
+
+### Run
+
+adonis serve --dev
+Open http://localhost:3333/login on browser
+login with email: admin@mail.com, password:root
