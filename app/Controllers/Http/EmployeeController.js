@@ -26,7 +26,28 @@ class EmployeeController {
   
 	session.flash({ notification: 'Success!' })
 	return response.route('employee.index')
+  }
+
+  async edit({ request, response, view, params }) {
+	const id    = params.id
+	const employee  = await Employee.find(id)
   
+	return view.render('employee.edit', { employee: employee })
+  }
+  
+  async update({ request, response, view, params, session }) {
+	const id    = params.id
+	const employee  = await Employee.find(id)
+  
+	employee.name   = request.input('name')
+	employee.role  = request.input('role')
+	employee.address  = request.input('address')
+	employee.directorate  = request.input('directorate')
+	employee.email  = request.input('email')
+	await employee.save()
+  
+	session.flash({ notification: 'Updated!' })
+	return response.route('employee.index')
   }
 
 }
