@@ -7,8 +7,8 @@ class EmployeeSchema extends Schema {
   up () {
     this.create('employees', (table) => {
       table.increments()
-	  table.string('name', 80).notNullable().unique()
-      table.string('email', 254).notNullable().unique()
+	  table.string('name', 80).notNullable()
+      table.string('email', 254)
 	  table.string('address', 200)
 	  table.string('role', 80)
 	  table.string('directorate', 80)

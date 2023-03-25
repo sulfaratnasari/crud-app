@@ -54,13 +54,17 @@ Route.get('/logout', 'Auth/LoginController.logout').as('logout')
 *     responses:
 *       200:
 *         description: Success
+*         example:
+*           type: bearer
+*           token: eyxxxxxxx
+*           refreshToken: dfxxxxx
 */
 Route.post('/auth/login', 'Auth/LoginController.login')
 Route.group(() => {
 
 	/**
   * @swagger
-  * /api/employee/view/:id:
+  * /api/employee/view/{id}:
   *  get:
   *     tags:
   *       - Employee
@@ -72,53 +76,92 @@ Route.group(() => {
   *         description: Employee ID
   *         in: path
   *         required: true
-  *         type: int
+  *         type: integer
   *     responses:
   *       200:
   *         description: Success
   *         example:
   *           name: employee_name
   *           email: employee@mail.com
+  *           role: Product Manager
+  *           directorate: Technology
+  *           address: Jakarta
   */
 	Route.get('/employee/view/:id', 'EmployeeController.detailApi').middleware(['auth:jwt'])
+
+	/**
+  * @swagger
+  * /api/employee/delete/{id}:
+  *  delete:
+  *     tags:
+  *       - Employee
+  *     security:
+  *        - bearerAuth: []
+  *     summary: Delete employee
+  *     parameters:
+  *       - name: id
+  *         description: Employee ID
+  *         in: path
+  *         required: true
+  *         type: integer
+  *     responses:
+  *       200:
+  *         description: Success
+  *         example: 
+  *           message: Success
+  */
 	Route.delete('/employee/delete/:id', 'EmployeeController.deleteApi').middleware(['auth:jwt'])
+
+	/**
+* @swagger
+* /api/employee/update/{id}:
+*  put:
+*     tags:
+*       - Employee
+*     security:
+*        - bearerAuth: []
+*     summary: Update employee data
+*     parameters:
+*       - name: id
+*         description: Employee ID
+*         in: path
+*         required: true
+*         type: integer
+*       - name: body
+*         description: Employee data
+*         in: body
+*         required: true
+*         schema: 
+*           $ref: '#/definitions/Employee'
+*     responses:
+*       200:
+*         description: Success
+*         example:
+*           message: Success
+*/
 	Route.put('/employee/update/:id', 'EmployeeController.updateApi').middleware(['auth:jwt'])
 
 	/**
 * @swagger
 * /api/employee/store:
-*  get:
+*  post:
 *     tags:
 *       - Employee
 *     security:
 *        - bearerAuth: []
-*     summary: Add new
-parameters:
+*     summary: Add new employee
+*     parameters:
 *       - name: body
 *         description: Employee data
 *         in: body
 *         required: true
-*         schema:
-*           type: object
-*           required:
-*            - name
-*           properties:
-*             name:
-*               type: string
-*             email:
-*               type: string
-*	          role:
-*               type: string
-*	          address:
-*               type: string
-*	          directorate:
-*               type: string
+*         schema: 
+*           $ref: '#/definitions/Employee'
 *     responses:
 *       200:
 *         description: Success
 *         example:
-*           name: employee_name
-*           email: employee@mail.com
+*           message: Success
 */
 	Route.post('/employee/store', 'EmployeeController.storeApi').middleware(['auth:jwt'])
 
@@ -134,13 +177,10 @@ parameters:
   *     responses:
   *       200:
   *         description: Success
-  * 		example:
-  *           - id: 1
-  *             name: user1
-  *             email: example@mail.com
-  *             role: Product Manager
-  *             directorate: Technology
-  *             address: Jakarta
+  * 		content:
+  *           application/json:
+  *           	schema:
+  *               $ref: '#/definitions/Employee'
   */
 	Route.get('/employee/list', 'EmployeeController.indexApi').middleware(['auth:jwt'])
 }).prefix('/api')
