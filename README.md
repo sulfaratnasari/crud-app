@@ -1,6 +1,11 @@
 # EMPLOYEE CRUD APP - Sulfa Ratna Sari
 
-This app is to manage employees data.
+This app is to manage employees data:
+- Create new employee
+- Update employee data
+- View all employee data
+- View employee detail
+- Delete employee data
 
 # Installation
 
@@ -12,8 +17,8 @@ This app is to manage employees data.
 ## Setup
 
 - npm install
-- create db connection to localhost:3306 using mysql
-- create database 'adonis'
+- create db connection to localhost:3306, username:root, database name: adonis, using mysql
+- or edit the .env file to match your database settings.
 
 
 ### Migrations
