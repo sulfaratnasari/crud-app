@@ -13,9 +13,9 @@ class LoginController {
 
 		const { email, password } = request.all()
 		try {
-				await auth.attempt(email, password)
-				return response.route('employee.index')
-		
+			await auth.attempt(email, password)
+			return response.route('employee.index')
+
 		}
 		catch (e) {
 			return response.json({ message: 'Error! ' + e })
