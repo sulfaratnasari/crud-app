@@ -1,12 +1,12 @@
 'use strict'
 
 const Employee = use('App/Models/Employee')
+const Database = use('Database')
 
 class EmployeeController {
 
 	async index({ request, response, view }) {
 		const employees = await Employee.all()
-
 		return view.render('employee.index', { employees: employees.rows })
 	}
 
@@ -120,9 +120,12 @@ class EmployeeController {
 		}
 	}
 
-	async indexApi({ request, response, auth, view }) {
+	async indexApi({ request, response, params, view }) {
 		try {
-			const employees = await Employee.all()
+			const queryParams = request.get()
+			const page = queryParams.page
+			const limit = queryParams.limit
+			const employees = await Database.from('employees').paginate(page,limit)
 			return response.json(employees)
 		} catch (e) {
 			return response.json({ message: 'Error! ' + e })

@@ -174,6 +174,17 @@ Route.group(() => {
   *     security:
   *        - bearerAuth: []
   *     summary: Get employee list
+  *     parameters:
+  *       - name: page
+  *         description: page
+  *         in: query
+  *         required: false
+  *         type: integer
+  *       - name: limit
+  *         description: total data expected to be returned per page
+  *         in: query
+  *         required: false
+  *         type: integer
   *     responses:
   *       200:
   *         description: Success

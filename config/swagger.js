@@ -33,7 +33,7 @@ module.exports = {
       securityDefinitions: {
 		bearerAuth: {
 			type: 'apiKey',
-			in: 'header (Use prefix Bearer before token)',
+			in: 'header (Use this format: Bearer {token})',
 			name: 'Authorization'
 		 },
 
